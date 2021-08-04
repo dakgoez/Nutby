@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="17709" systemVersion="20D91" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
+    <entity name="Babies" representedClassName="Babies" syncable="YES">
+        <attribute name="birthDate" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
+        <attribute name="firstName" optional="YES" attributeType="String"/>
+        <attribute name="gender" optional="YES" attributeType="String"/>
+        <attribute name="lastName" optional="YES" attributeType="String"/>
+        <attribute name="picture" optional="YES" attributeType="Binary"/>
+        <relationship name="diaper_change" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="DiaperChange" inverseName="baby" inverseEntity="DiaperChange"/>
+        <relationship name="feeding" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="Feedings" inverseName="baby" inverseEntity="Feedings"/>
+        <uniquenessConstraints>
+            <uniquenessConstraint>
+                <constraint value="firstName"/>
+            </uniquenessConstraint>
+        </uniquenessConstraints>
+    </entity>
+    <entity name="DiaperChange" representedClassName="DiaperChange" syncable="YES">
+        <attribute name="feces" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
+        <attribute name="time" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
+        <attribute name="urine" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
+        <relationship name="baby" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Babies" inverseName="diaper_change" inverseEntity="Babies"/>
+    </entity>
+    <entity name="Feedings" representedClassName="Feedings" syncable="YES">
+        <attribute name="milliliter" optional="YES" attributeType="Float" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="time" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
+        <relationship name="baby" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Babies" inverseName="feeding" inverseEntity="Babies"/>
+    </entity>
+    <elements>
+        <element name="Babies" positionX="-2.00274658203125" positionY="82.9300537109375" width="128" height="134"/>
+        <element name="DiaperChange" positionX="-54.37481689453125" positionY="369.3831787109375" width="128" height="103"/>
+        <element name="Feedings" positionX="305.9870605468749" positionY="277.5199890136719" width="128" height="88"/>
+    </elements>
+</model>
